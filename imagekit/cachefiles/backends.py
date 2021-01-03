@@ -140,11 +140,11 @@ class BaseAsync(Simple):
 
 
 try:
-    from celery import task
+    from celery import shared_task
 except ImportError:
     pass
 else:
-    _celery_task = task(ignore_result=True, serializer='pickle')(_generate_file)
+    _celery_task = shared_task(ignore_result=True, serializer='pickle')(_generate_file)
 
 
 class Celery(BaseAsync):
